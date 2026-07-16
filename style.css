@@ -1,0 +1,221 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#f2f2f2;
+}
+
+/* Карта */
+
+#map{
+    position:absolute;
+    top:60px;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1;
+}
+
+/* Верхняя панель */
+
+.top-bar{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background:#202124;
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:0 20px;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    user-select:none;
+}
+
+/* Карточка АЗС */
+
+.station-card{
+    position:absolute;
+    right:20px;
+    top:80px;
+
+    width:340px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    z-index:1200;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.hidden{
+    display:none;
+}
+
+.station-card h2{
+    font-size:24px;
+    margin-bottom:15px;
+    color:#222;
+}
+
+.station-card p{
+    font-size:17px;
+    margin-bottom:12px;
+    color:#555;
+    line-height:1.4;
+}
+
+#closeCard{
+    position:absolute;
+    top:12px;
+    right:12px;
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#efefef;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.2s;
+}
+
+#closeCard:hover{
+    background:#d8d8d8;
+}
+
+/* Загрузка */
+
+#loading{
+    position:absolute;
+    inset:0;
+
+    background:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+
+    z-index:5000;
+}
+
+.loader{
+
+    width:70px;
+    height:70px;
+
+    border:8px solid #ddd;
+    border-top:8px solid #2196f3;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+#loading span{
+    font-size:22px;
+    color:#333;
+}
+
+/* Красивые popup Leaflet */
+
+.leaflet-popup-content-wrapper{
+
+    border-radius:15px;
+
+    padding:5px;
+
+}
+
+.leaflet-popup-content{
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+/* Скролл */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#bdbdbd;
+    border-radius:10px;
+}
+
+/* Телефон */
+
+@media(max-width:700px){
+
+.station-card{
+
+left:10px;
+right:10px;
+width:auto;
+top:auto;
+bottom:15px;
+
+}
+
+.logo{
+
+font-size:20px;
+
+}
+
+.top-bar{
+
+height:55px;
+
+}
+
+#map{
+
+top:55px;
+
+}
+
+}
