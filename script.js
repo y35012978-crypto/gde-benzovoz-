@@ -52,34 +52,42 @@ out center tags;
 
 // Функция загрузки АЗС
 async function loadStations() {
-
     try {
-
         const response = await fetch(
             "https://overpass-api.de/api/interpreter",
             {
                 method: "POST",
-                body: overpassQuery
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({
+                    data: overpassQuery
+                })
             }
         );
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
 
         const data = await response.json();
 
         loading.style.display = "none";
 
+        gasStations.clearLayers();
+
         data.elements.forEach(addStation);
 
     } catch (e) {
-
         loading.innerHTML = `
-            <h2>Ошибка загрузки карты</h2>
-            <br>
-            <p>${e}</p>
+            <h2>Не удалось загрузить АЗС</h2>
+            <p>Проверь интернет или попробуй обновить страницу.</p>
+            <p>${e.message}</p>
         `;
 
-        console.error(e);
-
+        console.error("Ошибка Overpass:", e);
     }
+}
 
 }
 // ===============================
